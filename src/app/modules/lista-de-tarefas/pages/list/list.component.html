@@ -4,11 +4,12 @@
     alt="Sua lista está vazia - imagem ilustrativa"
     loading="eager">
 
-    <button class="btn btn-primary">
+    @if (addItem()){
+    <button class="btn btn-primary" (click)="addItem.set(false)">
       Crie uma lista de tarefas
     </button>
-
-    <div>
+    } @else {
+      <div>
       <label class="input-label-text" for="inputValue">
 
         <input type="text" placeholder="Adicione um novo item" id="inputValue" autofocus >
@@ -18,4 +19,5 @@
 
       </label>
     </div>
+    }
 </div>
