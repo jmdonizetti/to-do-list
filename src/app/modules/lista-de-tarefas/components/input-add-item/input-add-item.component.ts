@@ -1,12 +1,14 @@
-import { ChangeDetectorRef, Component, EventEmitter, ElementRef, inject, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, ElementRef, inject, Output, ViewChild, Input } from '@angular/core';
 
 //interface
 import { IListItems } from '../../interface/IListItems.interface';
+import { NgClass } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-input-add-item',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './input-add-item.component.html',
   styleUrl: './input-add-item.component.scss'
 })
@@ -15,6 +17,8 @@ export class InputAddItemComponent {
   #cdr = inject(ChangeDetectorRef);
 
   @ViewChild("inputText") public inputText!: ElementRef;
+
+  @Input({ required:true }) public inputListItems: IListItems[] = [];
 
   @Output() public outputAddListItem = new EventEmitter<IListItems>();
 
