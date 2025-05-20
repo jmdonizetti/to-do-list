@@ -22,11 +22,47 @@ export class ListComponent {
    #parseItems(){
     return JSON.parse(localStorage.getItem('@my-list') || '[]')
    }
+
+   //Salvando no localstorage
   public getInputAndAddItem(value: IListItems){
-//Salvando no localstorage
     localStorage.setItem('@my-list', JSON.stringify([...this.#setListItems(), value]));
 
     return this.#setListItems.set(this.#parseItems());
+  }
+
+  public listItemsStage(value: 'pending' | 'completed'){
+    return this.getListItems().filter((res: IListItems) => {
+      if(value === 'pending'){
+        return !res.checked;
+      }
+
+      if(value === 'completed'){
+        return res.checked;
+      }
+
+      return res;
+    })
+  }
+
+  public updateItemCheckbox(newItem: { id: string; checked: boolean }){
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter( res => {
+        if(res.id === newItem.id){
+          res.checked = newItem.checked;
+          return res;
+        }
+
+        return res;
+      });
+
+      return oldValue;
+    });
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.setItems())
+    );
+  }
+  setItems(): any {
+    throw new Error('Method not implemented.');
   }
 
   public deleteAllItems() {
