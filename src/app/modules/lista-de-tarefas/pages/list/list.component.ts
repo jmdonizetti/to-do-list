@@ -2,12 +2,14 @@ import { Component, signal } from '@angular/core';
 
 //components
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
-import { IListItems } from '../../interface/IListItems.interface';
+import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
 
+//Interface
+import { IListItems } from '../../interface/IListItems.interface';
 
 @Component({
   selector: 'app-list',
-  imports: [InputAddItemComponent],
+  imports: [InputAddItemComponent, InputListItemComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
