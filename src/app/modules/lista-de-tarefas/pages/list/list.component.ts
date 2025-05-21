@@ -85,6 +85,16 @@ export class ListComponent {
     );
   }
 
+  public deleteItemText(id: string){
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      return oldValue.filter((res) => res.id !== id);
+    });
+
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItems())
+    );
+  }
 
   public deleteAllItems() {
     localStorage.removeItem('@my-list');
