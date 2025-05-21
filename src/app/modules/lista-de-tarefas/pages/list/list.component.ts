@@ -58,12 +58,33 @@ export class ListComponent {
       return oldValue;
     });
 
-    return localStorage.setItem('@my-list', JSON.stringify(this.setItems())
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItems())
     );
   }
-  setItems(): any {
-    throw new Error('Method not implemented.');
+
+
+  public updateItemText(newItem: { id: string, value: string }){
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter( res => {
+        if(res.id === newItem.id){
+          res.value = newItem.value;
+          return res;
+        }
+
+        return res;
+      });
+
+      return oldValue;
+    });
+
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItems())
+    );
   }
+
 
   public deleteAllItems() {
     localStorage.removeItem('@my-list');
