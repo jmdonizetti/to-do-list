@@ -1,15 +1,14 @@
 # ToDo List
 
-![jmdonizetti github io_to-do-list_(iPhone 5_SE)](https://github.com/user-attachments/assets/5876948e-428a-48f1-bee2-f66b827fe62f)
+![jmdonizetti github io_to-do-list_](https://github.com/user-attachments/assets/5100c8a7-9a06-4918-8b93-453e76db31bd)
 
 
 
+> ToDo List
 
-> Portfólio
+ToDo List feito com 100% Angular, feito também o uso do sweetalert2.
 
-Portfólio feito com 100% Angular, foi utilizado também Angular material.
-
-🔗 Clique ao lado para acessar = ([https://jmdonizetti.github.io/Portfolio-joao/])
+🔗 Clique ao lado para acessar = ([[(https://jmdonizetti.github.io/to-do-list/)])
 
 
 
@@ -17,11 +16,13 @@ Portfólio feito com 100% Angular, foi utilizado também Angular material.
 
 -HTML
 
--sCSS
+-SCSS
 
 -typeScript
 
 -Angular
+
+-SweetAlert2
 
 -Github
 
