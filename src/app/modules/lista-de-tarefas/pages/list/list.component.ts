@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import Swal from 'sweetalert2';
 
 //components
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
@@ -70,7 +71,6 @@ export class ListComponent {
     return this.#updateLocalStorage()
   }
 
-
   public updateItemText(newItem: { id: string, value: string }){
     this.#setListItems.update((oldValue: IListItems[]) => {
       oldValue.filter( res => {
@@ -89,15 +89,44 @@ export class ListComponent {
   }
 
   public deleteItem(id: string){
+    Swal.fire({
+  title: "Tem certeza?",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#2fbf71",
+  cancelButtonColor: "#c90025",
+  confirmButtonText: "Sim, delete o item!"
+}).then((result) => {
+  if (result.isConfirmed) {
     this.#setListItems.update((oldValue: IListItems[]) => {
       return oldValue.filter((res) => res.id !== id);
     });
 
     return this.#updateLocalStorage()
-  }
+    }
+  });
+}
 
   public deleteAllItems() {
-    localStorage.removeItem(ELocalStorage.MY_LIST);
-    return this.#setListItems.set(this.#parseItems());
+  Swal.fire({
+      title: "Tem certeza?",
+      text: "Você não poderá reverter isso!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2fbf71",
+      cancelButtonColor: "#c90025",
+      confirmButtonText: "Sim, delete isso!"
+  }).then((result) => {
+  if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deletado!",
+        text: "Seus itens foram excluídos",
+        icon: "success"
+      });
+
+      localStorage.removeItem(ELocalStorage.MY_LIST);
+      return this.#setListItems.set(this.#parseItems());
+    }
+  });
   }
 }
